@@ -1,6 +1,6 @@
-﻿using MedicalCenterSystem.Models.Entities;
+﻿using MedicalCenterSystem.Data.Configurations;
+using MedicalCenterSystem.Models.Entities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace MedicalCenterSystem.Data;
 
@@ -22,4 +22,11 @@ public class AppDbContext : DbContext
     public DbSet<TreatmentJourneyStep> TreatmentJourneySteps => Set<TreatmentJourneyStep>();
     public DbSet<ContactInfo> ContactInfos => Set<ContactInfo>();
     public DbSet<WorkingHour> WorkingHours => Set<WorkingHour>();
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+
+        EntityConfigurations.Configure(modelBuilder);
+    }
 }

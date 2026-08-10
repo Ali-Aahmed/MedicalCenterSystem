@@ -1,16 +1,18 @@
 ﻿namespace MedicalCenterSystem.Models.Entities;
 
-public class GalleryImage
+public class Review
 {
     public int Id { get; set; }
 
-    public string ImageUrl { get; set; } = string.Empty;
+    public string ReviewerName { get; set; } = string.Empty;
 
-    public string? Title { get; set; }
+    public string Content { get; set; } = string.Empty;
 
-    public string? Description { get; set; }
+    public int Rating { get; set; }
+
+    public bool IsApproved { get; set; } = false;
 
     public int DisplayOrder { get; set; }
 
-    public bool IsActive { get; set; } = true;
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 }
