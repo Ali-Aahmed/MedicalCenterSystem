@@ -172,7 +172,13 @@ public static class EntityConfigurations
 
         modelBuilder.Entity<Review>(entity =>
         {
-            entity.ToTable("Reviews");
+            entity.ToTable("Reviews", table =>
+            {
+                table.HasCheckConstraint(
+                    "CK_Reviews_Rating",
+                    "[Rating] >= 1 AND [Rating] <= 5"
+                );
+            });
 
             entity.HasKey(x => x.Id);
 
@@ -183,11 +189,6 @@ public static class EntityConfigurations
             entity.Property(x => x.Content)
                 .IsRequired()
                 .HasMaxLength(1000);
-
-            entity.HasCheckConstraint(
-                "CK_Reviews_Rating",
-                "[Rating] >= 1 AND [Rating] <= 5"
-            );
 
             entity.HasIndex(x => x.IsApproved);
         });
