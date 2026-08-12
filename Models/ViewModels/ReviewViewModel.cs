@@ -1,4 +1,6 @@
-﻿public class Review
+﻿namespace MedicalCenterSystem.Models.ViewModels;
+
+public class ReviewViewModel
 {
     public int Id { get; set; }
 
@@ -9,10 +11,4 @@
     public int Rating { get; set; }
 
     public string? GoogleReviewUrl { get; set; }
-
-    public bool IsApproved { get; set; } = false;
-
-    public int DisplayOrder { get; set; }
-
-    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 }

@@ -1,8 +1,916 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+@model MedicalCenterSystem.Models.ViewModels.HomeViewModel
+
+@{
+    ViewData["Title"] = "مركز بادرة للعلاج الطبيعي";
+    ViewData["Description"] =
+        "مركز بادرة للعلاج الطبيعي في بريدة يقدم خدمات العلاج الطبيعي وإعادة التأهيل.";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="hero">
+
+    <div class="container">
+
+        <div class="hero-grid">
+
+            <div class="hero-content">
+
+                <span class="eyebrow">
+                    بادرة الشفاء تبدأ من هنا
+                </span>
+
+                <h1>
+                    خطوتك الأولى نحو
+                    <span>حركة بلا ألم</span>
+                </h1>
+
+                <p class="hero-lede">
+                    مركز بادرة للعلاج الطبيعي يقدّم رعاية متخصصة
+                    في العلاج الطبيعي وإعادة التأهيل، بخطط علاج
+                    مبنية على تقييم دقيق لكل حالة وفريق متخصص
+                    يرافقك خطوة بخطوة خلال رحلة العلاج.
+                </p>
+
+                <div class="hero-actions">
+
+                    <a href="#contact"
+                       class="btn btn-primary">
+                        احجز استشارتك الآن
+                    </a>
+
+                    <a href="#services"
+                       class="btn btn-outline">
+                        تعرف على خدماتنا
+                    </a>
+
+                </div>
+
+                <div class="hero-stats">
+
+                    <div class="hero-stat">
+                        <strong>12+</strong>
+                        <span>سنة خبرة</span>
+                    </div>
+
+                    <div class="hero-stat">
+                        <strong>4500+</strong>
+                        <span>حالة تم علاجها</span>
+                    </div>
+
+                    <div class="hero-stat">
+                        <strong>8</strong>
+                        <span>أخصائيين معتمدين</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-image-wrapper">
+
+                <div class="hero-image-card">
+
+                    <img src="~/images/hero/hero.jpg"
+                         asp-append-version="true"
+                         alt="مركز بادرة للعلاج الطبيعي"
+                         fetchpriority="high" />
+
+                    <div class="hero-image-badge">
+
+                        <span class="badge-icon">
+                            ✦
+                        </span>
+
+                        <div>
+                            <strong>رعاية متخصصة</strong>
+                            <span>نهتم برحلة تعافيك</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     ABOUT
+========================================================= -->
+
+<section id="about"
+         class="section about-section">
+
+    <div class="container">
+
+        <div class="about-grid">
+
+            <div class="about-visual">
+
+                <div class="about-logo-card">
+
+                    <img src="~/images/logo.png"
+                         asp-append-version="true"
+                         alt="شعار مركز بادرة للعلاج الطبيعي" />
+
+                </div>
+
+            </div>
+
+
+            <div class="about-content">
+
+                <span class="eyebrow">
+                    عن مركز بادرة
+                </span>
+
+                <h2>
+                    رعاية تبدأ بفهم حالتك
+                </h2>
+
+                <p>
+                    في مركز بادرة للعلاج الطبيعي نؤمن بأن رحلة العلاج
+                    تبدأ من التقييم الصحيح وفهم احتياجات كل حالة.
+                </p>
+
+                <p>
+                    لذلك نحرص على تقديم تجربة علاجية واضحة ومنظمة،
+                    تساعد المراجع على فهم خطوات العلاج ومتابعة تطوره
+                    خلال الرحلة العلاجية.
+                </p>
+
+                <a href="#contact"
+                   class="text-link">
+                    تواصل معنا
+                    <span>←</span>
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     SERVICES
+========================================================= -->
+
+<section id="services"
+         class="section section-soft">
+
+    <div class="container">
+
+        <div class="section-heading-row">
+
+            <div class="section-heading">
+
+                <span class="eyebrow">
+                    خدماتنا
+                </span>
+
+                <h2>
+                    خدمات العلاج والتأهيل
+                </h2>
+
+                <p>
+                    مجموعة من خدمات العلاج الطبيعي والتأهيل
+                    المصممة لتلبية احتياجات الحالات المختلفة.
+                </p>
+
+            </div>
+
+
+            <div class="slider-controls"
+                 data-slider-controls="services">
+
+                <button type="button"
+                        class="slider-btn"
+                        data-slider-prev="services"
+                        aria-label="الخدمات السابقة">
+
+                    →
+                </button>
+
+                <button type="button"
+                        class="slider-btn"
+                        data-slider-next="services"
+                        aria-label="الخدمات التالية">
+
+                    ←
+                </button>
+
+            </div>
+
+        </div>
+
+
+        @if (Model.Services.Any())
+        {
+            <div class="content-slider"
+                 data-slider="services">
+
+                <div class="content-slider-track">
+
+                    @foreach (var service in Model.Services.OrderBy(x => x.DisplayOrder))
+                    {
+                        <article class="service-card slider-item">
+
+                            <div class="service-image">
+
+                                @if (!string.IsNullOrWhiteSpace(service.ImageUrl))
+                                {
+                                    <img src="@service.ImageUrl"
+                                         alt="@service.Name"
+                                         loading="lazy" />
+                                }
+                                else
+                                {
+                                    <div class="image-placeholder">
+                                        <span>✦</span>
+                                    </div>
+                                }
+
+                            </div>
+
+
+                            <div class="service-body">
+
+                                <div class="service-number">
+                                    @service.DisplayOrder.ToString("00")
+                                </div>
+
+                                <h3>
+                                    @service.Name
+                                </h3>
+
+                                <p>
+                                    @service.ShortDescription
+                                </p>
+
+                                <a href="#contact"
+                                   class="text-link">
+                                    استفسر عن الخدمة
+                                    <span>←</span>
+                                </a>
+
+                            </div>
+
+                        </article>
+                    }
+
+                </div>
+
+            </div>
+
+            <div class="slider-dots"
+                 data-slider-dots="services">
+            </div>
+        }
+        else
+        {
+            <div class="empty-state">
+                لا توجد خدمات متاحة حاليًا.
+            </div>
+        }
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     WHY BADERA
+========================================================= -->
+
+<section id="why-us"
+         class="section why-section">
+
+    <div class="container">
+
+        <div class="section-heading center-heading">
+
+            <span class="eyebrow">
+                لماذا مركز بادرة؟
+            </span>
+
+            <h2>
+                تجربة علاجية تهتم بك
+            </h2>
+
+            <p>
+                نركز على بناء تجربة واضحة ومريحة للمراجع
+                في كل خطوة من خطوات العلاج.
+            </p>
+
+        </div>
+
+
+        <div class="features-grid">
+
+            <article class="feature-card">
+
+                <div class="feature-icon">
+                    01
+                </div>
+
+                <h3>
+                    تقييم دقيق
+                </h3>
+
+                <p>
+                    نبدأ بفهم الحالة واحتياجاتها قبل بناء
+                    الخطة العلاجية المناسبة.
+                </p>
+
+            </article>
+
+
+            <article class="feature-card">
+
+                <div class="feature-icon">
+                    02
+                </div>
+
+                <h3>
+                    خطة علاج واضحة
+                </h3>
+
+                <p>
+                    خطوات منظمة تساعد المراجع على فهم
+                    مراحل رحلته العلاجية.
+                </p>
+
+            </article>
+
+
+            <article class="feature-card">
+
+                <div class="feature-icon">
+                    03
+                </div>
+
+                <h3>
+                    متابعة مستمرة
+                </h3>
+
+                <p>
+                    متابعة تطور الحالة خلال مراحل العلاج
+                    وإعادة التأهيل.
+                </p>
+
+            </article>
+
+
+            <article class="feature-card">
+
+                <div class="feature-icon">
+                    04
+                </div>
+
+                <h3>
+                    بيئة مريحة
+                </h3>
+
+                <p>
+                    نحرص على توفير تجربة علاجية احترافية
+                    وواضحة للمراجع.
+                </p>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     TREATMENT JOURNEY
+========================================================= -->
+
+<section id="journey"
+         class="section journey-section">
+
+    <div class="container">
+
+        <div class="section-heading center-heading">
+
+            <span class="eyebrow">
+                رحلتك العلاجية
+            </span>
+
+            <h2>
+                من التقييم إلى المتابعة
+            </h2>
+
+            <p>
+                خطوات واضحة تساعدك على معرفة ما ينتظرك
+                خلال رحلتك العلاجية.
+            </p>
+
+        </div>
+
+
+        @if (Model.TreatmentJourney.Any())
+        {
+            <div class="journey-grid">
+
+                @foreach (var step in Model.TreatmentJourney.OrderBy(x => x.StepNumber))
+                {
+                    <article class="journey-step">
+
+                        <div class="journey-number">
+
+                            @step.StepNumber.ToString("00")
+
+                        </div>
+
+                        <div class="journey-content">
+
+                            <h3>
+                                @step.Title
+                            </h3>
+
+                            <p>
+                                @step.Description
+                            </p>
+
+                        </div>
+
+                    </article>
+                }
+
+            </div>
+        }
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     SPECIALISTS
+========================================================= -->
+
+<section id="specialists"
+         class="section section-soft">
+
+    <div class="container">
+
+        <div class="section-heading-row">
+
+            <div class="section-heading">
+
+                <span class="eyebrow">
+                    فريقنا
+                </span>
+
+                <h2>
+                    فريق متخصص يرافقك
+                </h2>
+
+                <p>
+                    نعمل على تقديم رعاية متخصصة ومتابعة
+                    احتياجات كل حالة خلال رحلة العلاج.
+                </p>
+
+            </div>
+
+
+            <div class="slider-controls"
+                 data-slider-controls="specialists">
+
+                <button type="button"
+                        class="slider-btn"
+                        data-slider-prev="specialists"
+                        aria-label="الأخصائي السابق">
+
+                    →
+                </button>
+
+                <button type="button"
+                        class="slider-btn"
+                        data-slider-next="specialists"
+                        aria-label="الأخصائي التالي">
+
+                    ←
+                </button>
+
+            </div>
+
+        </div>
+
+
+        @if (Model.Specialists.Any())
+        {
+            <div class="content-slider"
+                 data-slider="specialists">
+
+                <div class="content-slider-track">
+
+                    @foreach (var specialist in Model.Specialists.OrderBy(x => x.DisplayOrder))
+                    {
+                        <article class="specialist-card slider-item">
+
+                            <div class="specialist-image">
+
+                                @if (!string.IsNullOrWhiteSpace(specialist.ImageUrl))
+                                {
+                                    <img src="@specialist.ImageUrl"
+                                         alt="@specialist.Name"
+                                         loading="lazy" />
+                                }
+                                else
+                                {
+                                    <div class="image-placeholder">
+                                        <span>♙</span>
+                                    </div>
+                                }
+
+                            </div>
+
+
+                            <div class="specialist-body">
+
+                                <h3>
+                                    @specialist.Name
+                                </h3>
+
+                                <span class="specialist-specialty">
+                                    @specialist.Specialty
+                                </span>
+
+                                @if (!string.IsNullOrWhiteSpace(specialist.Qualifications))
+                                {
+                                    <p class="specialist-qualification">
+                                        @specialist.Qualifications
+                                    </p>
+                                }
+
+                            </div>
+
+                        </article>
+                    }
+
+                </div>
+
+            </div>
+
+            <div class="slider-dots"
+                 data-slider-dots="specialists">
+            </div>
+        }
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     REVIEWS
+========================================================= -->
+
+<section id="reviews"
+         class="section reviews-section">
+
+    <div class="container">
+
+        <div class="section-heading-row">
+
+            <div class="section-heading">
+
+                <span class="eyebrow">
+                    آراء المراجعين
+                </span>
+
+                <h2>
+                    تجارب نعتز بها
+                </h2>
+
+                <p>
+                    بعض التجارب التي شاركها مراجعي مركز بادرة.
+                </p>
+
+            </div>
+
+
+            <div class="slider-controls"
+                 data-slider-controls="reviews">
+
+                <button type="button"
+                        class="slider-btn"
+                        data-slider-prev="reviews"
+                        aria-label="المراجعة السابقة">
+
+                    →
+                </button>
+
+                <button type="button"
+                        class="slider-btn"
+                        data-slider-next="reviews"
+                        aria-label="المراجعة التالية">
+
+                    ←
+                </button>
+
+            </div>
+
+        </div>
+
+
+        @if (Model.Reviews.Any())
+        {
+            <div class="content-slider"
+                 data-slider="reviews">
+
+                <div class="content-slider-track">
+
+                    @foreach (var review in Model.Reviews)
+                    {
+                        <article class="review-card slider-item">
+
+                            <div class="review-top">
+
+                                <div class="review-stars"
+                                     aria-label="التقييم @review.Rating من 5">
+
+                                    @for (var i = 1; i <= 5; i++)
+                                    {
+                                        if (i <= review.Rating)
+                                        {
+                                            <span>★</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="empty-star">★</span>
+                                        }
+                                    }
+
+                                </div>
+
+                                <span class="review-source">
+                                    Google
+                                </span>
+
+                            </div>
+
+
+                            <blockquote>
+                                "@review.Content"
+                            </blockquote>
+
+
+                            <div class="review-footer">
+
+                                <div class="reviewer">
+
+                                    <div class="reviewer-avatar">
+                                        @review.ReviewerName.Substring(
+                                        0,
+                                                                Math.Min(1, review.ReviewerName.Length)
+                                                                )
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    @review.ReviewerName
+                                </strong>
+
+                                <span>
+                                    مراجع لدى المركز
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        @if (!string.IsNullOrWhiteSpace(review.GoogleReviewUrl))
+                                {
+                                    <a href="@review.GoogleReviewUrl"
+                                       target="_blank"
+                                       rel="noopener noreferrer"
+                                       class="google-review-link">
+
+                                        مشاهدة المراجعة
+                                        ↗
+
+                                    </a>
+                                }
+
+                            </div>
+
+                        </article>
+                    }
+
+                </div>
+                <!-- جميع آراء Google -->
+<div class="slider-item reviews-google-card">
+
+    <div class="reviews-google-card-content">
+
+        <div class="reviews-google-icon">
+            ★
+        </div>
+
+        <h3>
+            جميع آراء مراجعي المركز
+        </h3>
+
+        <p>
+            شاهد المزيد من تجارب وآراء مراجعي
+            مركز بادرة للعلاج الطبيعي على Google Maps.
+        </p>
+
+                        <a href="https://2u.pw/GA10Tz"
+            class="btn btn-primary"
+            target="_blank"
+            rel="noopener noreferrer">
+
+            مشاهدة جميع الآراء
+        </a>
+
+    </div>
+
 </div>
+
+            </div>
+
+            <div class="slider-dots"
+                 data-slider-dots="reviews">
+            </div>
+        }
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CONTACT
+========================================================= -->
+
+<section id="contact"
+         class="contact-section">
+
+    <div class="container">
+
+        <div class="contact-grid">
+
+            <div class="contact-content">
+
+                <span class="eyebrow contact-eyebrow">
+                    تواصل معنا
+                </span>
+
+                <h2>
+                    ابدأ رحلة علاجك اليوم
+                </h2>
+
+                <p class="contact-description">
+                    فريقنا جاهز للرد على استفساراتك
+                    وتحديد أنسب موعد لحالتك.
+                </p>
+
+
+                <ul class="contact-list">
+
+                    <li>
+
+                        <span class="contact-icon">
+                            📍
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                العنوان
+                            </strong>
+
+                            <span>
+                                المملكة العربية السعودية -
+                                القصيم - بريدة -
+                                حي المنتزة
+                            </span>
+
+                        </div>
+
+                    </li>
+
+
+                    <li>
+
+                        <span class="contact-icon">
+                            📞
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                الهاتف
+                            </strong>
+
+                            <a href="tel:+966506522551">
+                                0506522551
+                            </a>
+
+                        </div>
+
+                    </li>
+
+
+                    <li>
+
+                        <span class="contact-icon">
+                            ✉️
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                البريد الإلكتروني
+                            </strong>
+
+                            <a href="mailto:info@badra-center.com">
+                                info@badra-center.com
+                            </a>
+
+                        </div>
+
+                    </li>
+
+                </ul>
+
+
+                <table class="hours-table">
+
+                    <tbody>
+
+                        <tr>
+                            <td>السبت - الخميس</td>
+                            <td>9:00 ص - 9:00 م</td>
+                        </tr>
+
+                        <tr>
+                            <td>الجمعة</td>
+                            <td>مغلق</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+
+                <div class="contact-actions">
+
+                    <a href="https://wa.me/966506522551"
+                       class="btn btn-primary"
+                       target="_blank"
+                       rel="noopener noreferrer">
+
+                        راسلنا على واتساب
+
+                    </a>
+
+
+                    <a href="tel:+966506522551"
+                       class="btn btn-light-outline">
+
+                        اتصل بنا الآن
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="map-frame">
+
+                <iframe src="https://www.google.com/maps?q=مركز+بادرة+للعلاج+الطبيعي+بريدة&output=embed"
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="موقع مركز بادرة للعلاج الطبيعي على الخريطة">
+                </iframe>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
