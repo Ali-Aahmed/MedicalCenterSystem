@@ -5,7 +5,7 @@
 // 1. Mobile Navigation
 // 2. Scroll Reveal
 // 3. Header Shadow
-// 4. Generic Content Slider (أزرار + سحب باللمس Swipe)
+// 4. Swiper Sliders (يتطلب تحميل مكتبة Swiper في _Layout.cshtml قبل هذا الملف)
 //    - Services
 //    - Specialists
 //    - Reviews
@@ -16,14 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
     initMobileNav();
     initScrollReveal();
     initHeaderShadow();
-
-    // ------------------------------------------------------
-    // Content Sliders (تُنشأ مرة واحدة فقط)
-    // ------------------------------------------------------
-
-    new ContentSlider("services");
-    new ContentSlider("specialists");
-    new ContentSlider("reviews");
+    initSwiperSliders();
 
 });
 
@@ -131,215 +124,140 @@ function initHeaderShadow() {
 }
 
 
+
 // ==========================================================================
-// CONTENT SLIDER (مبني على CSS Scroll Snap الأصلي — أكثر ثباتًا عبر المتصفحات)
+// SWIPER SLIDERS
 // ==========================================================================
-// الفكرة: الشريحة نفسها overflow-x: auto + scroll-snap-type (انظر site.css).
-// اللمس والسحب يتولاهما المتصفح مباشرة (لا حسابات JS يدوية للموضع/الترانسفورم).
-// الأزرار والنقاط تستخدم scrollIntoView() فقط، وهي متوافقة تلقائيًا مع RTL.
+// Services / Specialists: عرض عدة كروت مع أزرار وتنقل سريع.
+// Reviews: كارت واحد على الموبايل، كارتين في المنتصف على الشاشات الأكبر،
+// مع حركة دخول ناعمة (fade) وتوسيط للكارت الحالي.
 // ==========================================================================
 
-class ContentSlider {
+function initSwiperSliders() {
 
-    constructor(name) {
-
-        this.name = name;
-        this.container = document.querySelector(`[data-slider="${name}"]`);
-        if (!this.container) return;
-
-        this.track = this.container.querySelector(".content-slider-track");
-        if (!this.track) return;
-
-        this.items = Array.from(this.track.querySelectorAll(".slider-item"));
-        if (!this.items.length) return;
-
-        this.prevButton = document.querySelector(`[data-slider-prev="${name}"]`);
-        this.nextButton = document.querySelector(`[data-slider-next="${name}"]`);
-        this.dotsContainer = document.querySelector(`[data-slider-dots="${name}"]`);
-        this.controls = document.querySelector(`[data-slider-controls="${name}"]`);
-
-        this.currentIndex = 0;
-        this.visibleItems = 3;
-        this.pageCount = 1;
-        this.scrollTimer = null;
-
-        this.init();
+    if (typeof Swiper === "undefined") {
+        console.warn("Swiper library is not loaded. Add the CDN script in _Layout.cshtml before site.js.");
+        return;
     }
 
-    init() {
-        this.bindEvents();
-        this.refresh();
-    }
+    // ------------------------------------------------------
+    // الخدمات (Services)
+    // ------------------------------------------------------
 
-    // ======================================================================
-    // EVENTS
-    // ======================================================================
-
-    bindEvents() {
-
-        if (this.prevButton) {
-            this.prevButton.addEventListener("click", () => this.previous());
-        }
-
-        if (this.nextButton) {
-            this.nextButton.addEventListener("click", () => this.next());
-        }
-
-        let resizeTimer;
-        window.addEventListener("resize", () => {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(() => this.refresh(), 150);
-        });
-
-        // مزامنة النقاط والأزرار مع أي تمرير يدوي (لمس/سحب) يقوم به المتصفح نفسه
-        this.track.addEventListener("scroll", () => {
-            clearTimeout(this.scrollTimer);
-            this.scrollTimer = setTimeout(() => this.syncIndexFromScroll(), 100);
-        }, { passive: true });
-    }
-
-    // ======================================================================
-    // RESPONSIVE
-    // ======================================================================
-
-    getVisibleItems() {
-        if (window.innerWidth <= 767) return 1;
-        if (window.innerWidth <= 991) return 2;
-        return 3;
-    }
-
-    // ======================================================================
-    // REFRESH
-    // ======================================================================
-
-    refresh() {
-
-        this.visibleItems = this.getVisibleItems();
-        this.pageCount = Math.max(1, this.items.length - this.visibleItems + 1);
-
-        if (this.currentIndex >= this.pageCount) {
-            this.currentIndex = this.pageCount - 1;
-        }
-        if (this.currentIndex < 0) {
-            this.currentIndex = 0;
-        }
-
-        this.createDots();
-        this.updateControls();
-        this.updateDots();
-    }
-
-    // ======================================================================
-    // اكتشاف أقرب عنصر ظاهر فعليًا بعد تمرير يدوي من المستخدم
-    // ======================================================================
-
-    syncIndexFromScroll() {
-
-        const trackRect = this.track.getBoundingClientRect();
-        let closestIndex = 0;
-        let closestDistance = Infinity;
-
-        this.items.forEach((item, index) => {
-            const distance = Math.abs(item.getBoundingClientRect().left - trackRect.left);
-            if (distance < closestDistance) {
-                closestDistance = distance;
-                closestIndex = index;
+    const servicesEl = document.querySelector(".services-swiper");
+    if (servicesEl) {
+        new Swiper(servicesEl, {
+            rtl: true,
+            slidesPerView: 1,
+            spaceBetween: 24,
+            speed: 500,
+            grabCursor: true,
+            navigation: {
+                nextEl: ".services-button-next",
+                prevEl: ".services-button-prev"
+            },
+            pagination: {
+                el: ".services-pagination",
+                clickable: true
+            },
+            breakpoints: {
+                768: { slidesPerView: 2, spaceBetween: 24 },
+                992: { slidesPerView: 3, spaceBetween: 28 },
+                1200: { slidesPerView: 3, spaceBetween: 28 }
             }
         });
-
-        this.currentIndex = closestIndex;
-        this.updateControls();
-        this.updateDots();
     }
 
-    // ======================================================================
-    // الانتقال لعنصر معيّن
-    // ======================================================================
+    // ------------------------------------------------------
+    // الأخصائيون (Specialists)
+    // ------------------------------------------------------
 
-    goToIndex(index) {
-
-        if (index < 0) index = 0;
-        if (index > this.pageCount - 1) index = this.pageCount - 1;
-
-        this.currentIndex = index;
-
-        const targetItem = this.items[index];
-        if (targetItem) {
-            targetItem.scrollIntoView({
-                behavior: "smooth",
-                inline: "start",
-                block: "nearest"
-            });
-        }
-
-        this.updateControls();
-        this.updateDots();
-    }
-
-    next() {
-        this.goToIndex(this.currentIndex + 1);
-    }
-
-    previous() {
-        this.goToIndex(this.currentIndex - 1);
-    }
-
-    // ======================================================================
-    // DOTS
-    // ======================================================================
-
-    createDots() {
-
-        if (!this.dotsContainer) return;
-
-        this.dotsContainer.innerHTML = "";
-
-        if (this.pageCount <= 1) {
-            this.dotsContainer.style.display = "none";
-            return;
-        }
-
-        this.dotsContainer.style.display = "flex";
-
-        for (let i = 0; i < this.pageCount; i++) {
-            const dot = document.createElement("button");
-            dot.type = "button";
-            dot.className = "slider-dot";
-            dot.setAttribute("aria-label", `الانتقال إلى المجموعة ${i + 1}`);
-            dot.addEventListener("click", () => this.goToIndex(i));
-            this.dotsContainer.appendChild(dot);
-        }
-    }
-
-    updateDots() {
-
-        if (!this.dotsContainer) return;
-
-        const dots = this.dotsContainer.querySelectorAll(".slider-dot");
-        dots.forEach((dot, index) => {
-            dot.classList.toggle("active", index === this.currentIndex);
+    const specialistsEl = document.querySelector(".specialists-swiper");
+    let specialistsSwiper = null;
+    if (specialistsEl) {
+        specialistsSwiper = new Swiper(specialistsEl, {
+            rtl: true,
+            slidesPerView: 1,
+            spaceBetween: 24,
+            speed: 500,
+            grabCursor: true,
+            autoHeight: true, // لضبط ارتفاع السلايدر تلقائيًا عند فتح "عرض المزيد"
+            navigation: {
+                nextEl: ".specialists-button-next",
+                prevEl: ".specialists-button-prev"
+            },
+            pagination: {
+                el: ".specialists-pagination",
+                clickable: true
+            },
+            breakpoints: {
+                768: { slidesPerView: 3, spaceBetween: 24 },
+                992: { slidesPerView: 3, spaceBetween: 28 }
+            }
         });
     }
 
-    // ======================================================================
-    // CONTROLS
-    // ======================================================================
+    initBioToggle(specialistsSwiper);
 
-    updateControls() {
+    // ------------------------------------------------------
+    // آراء المراجعين (Reviews)
+    // كارت واحد بالموبايل، كارتين في المنتصف بالشاشات الأكبر
+    // مع تأثير دخول ناعم (fade مبني فوق slide الافتراضي عبر التوسيط)
+    // ------------------------------------------------------
 
-        const hasMultiplePages = this.pageCount > 1;
-
-        if (this.controls) {
-            this.controls.classList.toggle("is-hidden", !hasMultiplePages);
-        }
-
-        if (this.prevButton) {
-            this.prevButton.disabled = !hasMultiplePages || this.currentIndex === 0;
-        }
-
-        if (this.nextButton) {
-            this.nextButton.disabled = !hasMultiplePages || this.currentIndex >= this.pageCount - 1;
-        }
+    const reviewsEl = document.querySelector(".reviews-swiper");
+    if (reviewsEl) {
+        new Swiper(reviewsEl, {
+            rtl: true,
+            slidesPerView: 1.05,
+            centeredSlides: true,
+            spaceBetween: 20,
+            speed: 550,
+            grabCursor: true,
+            navigation: {
+                nextEl: ".reviews-button-next",
+                prevEl: ".reviews-button-prev"
+            },
+            pagination: {
+                el: ".reviews-pagination",
+                clickable: true
+            },
+            breakpoints: {
+                768: { slidesPerView: 1.5, spaceBetween: 24, centeredSlides: true },
+                992: { slidesPerView: 2, spaceBetween: 28, centeredSlides: true }
+            }
+        });
     }
 }
 
+
+// ==========================================================================
+// SPECIALIST BIO — زر "عرض المزيد / عرض أقل"
+// ==========================================================================
+
+function initBioToggle(specialistsSwiper) {
+
+    document.addEventListener("click", function (e) {
+
+        const button = e.target.closest("[data-bio-toggle]");
+        if (!button) return;
+
+        const body = button.closest(".specialist-body");
+        if (!body) return;
+
+        const isOpen = body.classList.toggle("is-bio-open");
+        const textEl = button.querySelector(".toggle-text");
+
+        if (textEl) {
+            textEl.textContent = isOpen ? "عرض أقل" : "عرض المزيد";
+        }
+
+        button.setAttribute("aria-expanded", isOpen ? "true" : "false");
+
+        // إعادة حساب ارتفاع السلايدر بعد تغيّر ارتفاع الكارت
+        if (specialistsSwiper) {
+            // تأخير بسيط للسماح للمتصفح بإعادة رسم التخطيط الجديد أولًا
+            setTimeout(() => specialistsSwiper.update(), 50);
+        }
+    });
+}

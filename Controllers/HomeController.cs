@@ -22,62 +22,103 @@ public class HomeController : Controller
     }
 
 
+      
     private static IEnumerable<ServiceViewModel> GetDummyServices()
     {
         return new List<ServiceViewModel>
+    {
+        new ServiceViewModel
         {
-            new ServiceViewModel
-            {
-                Id = 1,
-                Name = "العلاج الطبيعي والتأهيل",
-                ShortDescription =
-                    "برامج علاج وتأهيل تساعد على تحسين الحركة واستعادة النشاط بطريقة تناسب احتياجات كل حالة.",
-                ImageUrl = "/images/services/physical-therapy.jpg",
-                DisplayOrder = 1
-            },
+            Id = 1,
+            Name = "تأهيل العظام والمفاصل والعمود الفقري",
+            ShortDescription =
+                "علاج آلام الظهر والرقبة ومشاكل العمود الفقري، وتأهيل خشونة وتيبس المفاصل بخطط علاجية مخصصة لكل حالة.",
+            ImageUrl = "/images/services/back-pain.jpg",
+            DisplayOrder = 1
+        },
 
-            new ServiceViewModel
-            {
-                Id = 2,
-                Name = "علاج آلام الظهر والمفاصل",
-                ShortDescription =
-                    "رعاية متخصصة للتعامل مع مشكلات الحركة والآلام العضلية والمفصلية.",
-                ImageUrl = "/images/services/back-pain.jpg",
-                DisplayOrder = 2
-            },
+      
 
-            new ServiceViewModel
-            {
-                Id = 3,
-                Name = "التأهيل بعد الإصابات",
-                ShortDescription =
-                    "خطة تأهيل تدريجية تساعد على العودة الآمنة إلى الحركة والنشاط.",
-                ImageUrl = "/images/services/rehabilitation.jpg",
-                DisplayOrder = 3
-            },
+        new ServiceViewModel
+        {
+            Id = 2,
+            Name = "التأهيل بعد الجراحات",
+            ShortDescription =
+                "برامج تأهيل متخصصة بعد العمليات الجراحية مثل جراحات الركبة والكتف وعمليات تغيير المفاصل.",
+                     ImageUrl = "/images/services/physical-therapy.jpg",
+            DisplayOrder = 3
+        },
 
-            new ServiceViewModel
-            {
-                Id = 4,
-                Name = "التأهيل الحركي",
-                ShortDescription =
-                    "برامج علاجية لتحسين القوة والمرونة والتوازن والقدرة على الحركة.",
-                ImageUrl = "/images/services/movement.jpg",
-                DisplayOrder = 4
-            },
+        new ServiceViewModel
+        {
+            Id = 3,
+            Name = "التأهيل العصبي",
+            ShortDescription =
+                "إعادة تأهيل ما بعد الجلطات الدماغية والحالات العصبية، لاستعادة الحركة والوظائف اليومية تدريجيًا.",
+            ImageUrl = "/images/services/neuro-rehab.jpg",
+            DisplayOrder = 4
+        },
 
+         new ServiceViewModel
+        {
+            Id = 4,
+            Name = "تأهيل الإصابات الرياضية",
+            ShortDescription =
+                "علاج إصابات العضلات والمفاصل كالالتواءات والتمزقات، مع برنامج عودة تدريجي وآمن للنشاط الرياضي.",
+           ImageUrl = "/images/services/rehabilitation.jpg",
+            DisplayOrder = 2
+        },
             new ServiceViewModel
-            {
-                Id = 5,
-                Name = "العلاج الطبيعي للأطفال",
-                ShortDescription =
-                    "برامج تأهيلية مصممة بما يتناسب مع احتياجات الأطفال وتطورهم الحركي.",
-                ImageUrl = "/images/services/children.jpg",
-                DisplayOrder = 5
-            }
-        };
+        {
+            Id = 5,
+            Name = "تأهيل كبار السن",
+            ShortDescription =
+                "برامج علاجية لتحسين القدرة على المشي والتوازن، وتقليل خطر السقوط، وزيادة الاستقلالية الحركية.",
+            ImageUrl = "/images/services/elderly-rehab.jpg",
+            DisplayOrder = 5
+        },
+
+        new ServiceViewModel
+        {
+            Id = 6,
+            Name = "العلاج الطبيعي للأطفال",
+            ShortDescription =
+                "برامج تأهيلية مصممة بما يتناسب مع احتياجات الأطفال وتطورهم الحركي.",
+            ImageUrl = "/images/services/movement.jpg",
+            DisplayOrder = 6
+        },
+
+        new ServiceViewModel
+        {
+            Id = 7,
+            Name = "العلاج بالتقنيات والأجهزة الحديثة",
+            ShortDescription =
+                "الموجات التصادمية والموجات الصوتية والتحفيز الكهربائي، لتخفيف الالتهابات وتحفيز التئام الأنسجة وتنشيط العضلات.",
+            ImageUrl = "/images/services/modalities.jpg",
+            DisplayOrder = 7
+        },
+
+        new ServiceViewModel
+        {
+            Id = 8,
+            Name = "العلاج اليدوي وتقنيات الأنسجة الرخوة",
+            ShortDescription =
+                "التدليك العلاجي لفك السدود والعقد العضلية، والإبر الجافة لنقاط الزناد، والعلاج بأكواب الهواء لتحسين الدورة الدموية.",
+            ImageUrl = "/images/services/manual-therapy.jpg",
+            DisplayOrder = 8
+        },
+
+        new ServiceViewModel
+        {
+            Id = 9,
+            Name = "التصريف اللمفاوي المتخصص",
+            ShortDescription =
+                "تصريف لمفاوي لعلاج الوذمة اللمفاوية والتورمات، وكذلك تخفيف التورم والكدمات بعد عمليات التجميل.",
+            ImageUrl = "/images/services/lymphatic-drainage.jpg",
+            DisplayOrder = 9
+        }
+    };
     }
-
 
     private static IEnumerable<TreatmentJourneyStepViewModel> GetDummyTreatmentJourney()
     {
@@ -137,7 +178,12 @@ public class HomeController : Controller
                 Specialty = "دكتورة فى العلاج الطبيعي والتأهيل",
                 Qualifications = "خبره أكثر من 8 سنوات في مجال العلاج الطبيعي والتأهيل",
                 Bio =
-                    "خبره أكثر من 8 سنوات في مجال العلاج الطبيعي والتأهيل، تشمل:\r\n\r\n* علاج وتأهيل كبار السن وإصابات ومشكلات الحركة.\r\n* إعادة التأهيل بعد العمليات الجراحية.\r\n* تقييم الحالات ووضع خطط علاجية فردية لمشكلات المفاصل والعمود الفقري.\r\n* علاج وتأهيل حالات مشاكل الأعصاب مثل الجلطات و غيرها .\r\n* التعامل مع بعض المشكلات الوظيفية المرتبطة بالجهاز الهضمي والحوض، بما في ذلك المشكلات المرتبطة بالخلعه .\r\n* متابعة تطور الحالة وتعديل الخطة العلاجية وفقًا لاستجابة المريض.\r\n* تقديم التمارين العلاجية والإرشادات اللازمة لتحسين الحركة والوظائف اليومية",
+                    "خبره أكثر من 8 سنوات في مجال العلاج الطبيعي والتأهيل" +
+                    "\r\n\r\n* علاج وتأهيل كبار السن وإصابات ومشكلات الحركة." +
+                    "\r\n* إعادة التأهيل بعد العمليات الجراحية." + 
+                    "\r\n*علاج وتأهيل حالات مشاكل الأعصاب مثل الجلطات ." +
+                      "\r\n* تقييم الحالات ووضع خطط علاجية فردية لمشكلات المفاصل والعمود الفقري." +
+                    "\r\n* التعامل مع بعض المشكلات الوظيفية المرتبطة بالجهاز الهضمي والحوض، بما في ذلك المشكلات المرتبطة بالخلعه .\r\n* متابعة تطور الحالة وتعديل الخطة العلاجية وفقًا لاستجابة المريض.\r\n* تقديم التمارين العلاجية والإرشادات اللازمة لتحسين الحركة والوظائف اليومية",
                 ImageUrl = "/images/specialists/specialist-1.jpg",
                 DisplayOrder = 1
             },
@@ -149,7 +195,7 @@ public class HomeController : Controller
                 Specialty = "دكتورة فى العلاج الطبيعي",
                 Qualifications = "متخصص في الرقبة والفقرات، تبديل المفاصل، الإصابات الرياضية  ",
                 Bio =
-                    "خبرة في علاج مشكلات الرقبة وضعف حركة الفقرات\r\n\r\nخبرة في علاج المشكلات الصحية لدى الأطفال\r\n\r\nخبرة في التأهيل بعد عمليات تبديل المفاصل\r\n\r\nخبرة في تأهيل حالات خشونة الركبة\r\n\r\nخبرة في علاج الإصابات الرياضية\r\n\r\nخبرة في علاج إصابات العضلات\r\n\r\nخبرة في علاج آلام الظهر",
+                    "*خبرة في علاج مشكلات الرقبة وضعف حركة الفقرات\r\n\r\n* خبرة في علاج المشكلات الصحية لدى الأطفال \r\n\r\n* خبرة في التأهيل بعد عمليات تبديل المفاصل\r\n\r\n* خبرة في تأهيل حالات خشونة الركبة\r\n\r\n* خبرة في علاج الإصابات الرياضية\r\n\r\n* خبرة في علاج إصابات العضلات\r\n\r\n* خبرة في علاج آلام الظهر",
                 ImageUrl = "/images/specialists/specialist-2.jpg",
                 DisplayOrder = 2
             },
@@ -161,7 +207,7 @@ public class HomeController : Controller
                 Specialty = "إعادة التأهيل",
                 Qualifications = "متخصص في برامج إعادة التأهيل",
                 Bio =
-                    "علاج مشاكل الرقبة وضعف حركة الفقرات\r\n\r\nعلاج آلام الظهر\r\n\r\nتأهيل ما بعد عمليات تبديل المفصل\r\n\r\nتأهيل حالات خشونة الركبة\r\n\r\nعلاج الإصابات الرياضية\r\n\r\nعلاج إصابات العضلات",
+                    "* علاج مشاكل الرقبة وضعف حركة الفقرات\r\n\r\n* علاج آلام الظهر\r\n\r\n* تأهيل ما بعد عمليات تبديل المفصل\r\n\r\n* تأهيل حالات خشونة الركبة\r\n\r\n* علاج الإصابات الرياضية\r\n\r\n* علاج إصابات العضلات",
                 ImageUrl = "/images/specialists/specialist-3.jpg",
                 DisplayOrder = 3
             },

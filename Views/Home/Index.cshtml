@@ -1,9 +1,9 @@
 @model MedicalCenterSystem.Models.ViewModels.HomeViewModel
 
 @{
-	ViewData["Title"] = "مركز بادرة للعلاج الطبيعي";
+	ViewData["Title"] = "مركز بادره للعلاج الطبيعي";
 	ViewData["Description"] =
-		"مركز بادرة للعلاج الطبيعي في بريدة يقدم خدمات العلاج الطبيعي وإعادة التأهيل.";
+		"مركز بادره للعلاج الطبيعي في بريدة يقدم خدمات العلاج الطبيعي وإعادة التأهيل.";
 }
 
 <!-- =========================================================
@@ -19,7 +19,7 @@
 			<div class="hero-content">
 
 				<span class="eyebrow">
-					بادرة الشفاء تبدأ من هنا
+					بادره الشفاء تبدأ من هنا
 				</span>
 
 				<h1>
@@ -28,7 +28,7 @@
 				</h1>
 
 				<p class="hero-lede">
-					مركز بادرة للعلاج الطبيعي يقدّم رعاية متخصصة
+					مركز بادره للعلاج الطبيعي يقدّم رعاية متخصصة
 					في العلاج الطبيعي وإعادة التأهيل، بخطط علاج
 					مبنية على تقييم دقيق لكل حالة وفريق متخصص
 					يرافقك خطوة بخطوة خلال رحلة العلاج.
@@ -47,25 +47,30 @@
 					</a>
 
 				</div>
-
-				<div class="hero-stats">
-
-					<div class="hero-stat">
-						<strong>12+</strong>
-						<span>سنة خبرة</span>
-					</div>
-
-					<div class="hero-stat">
-						<strong>4500+</strong>
-						<span>حالة تم علاجها</span>
-					</div>
-
-					<div class="hero-stat">
-						<strong>8</strong>
-						<span>أخصائيين معتمدين</span>
-					</div>
-
+				<div class="hero-lede">
+					خبره طويله في مجال العلاج الطبيعي و التاهيل
+					<br />
+					مختصين معتمدين في وضع الخطط العلاجية و متابعتها
 				</div>
+
+				@*   <div class="hero-stats">
+
+                    <div class="hero-stat">
+                        <strong>12+</strong>
+                        <span>سنة خبرة</span>
+                    </div>
+
+                    <div class="hero-stat">
+                        <strong>4500+</strong>
+                        <span>حالة تم علاجها</span>
+                    </div>
+
+                    <div class="hero-stat">
+                        <strong>8</strong>
+                        <span>أخصائيين معتمدين</span>
+                    </div>
+
+                </div> *@
 
 			</div>
 
@@ -76,7 +81,7 @@
 
 					<img src="~/images/hero/hero.jpg"
 						 asp-append-version="true"
-						 alt="مركز بادرة للعلاج الطبيعي"
+						 alt="مركز بادره للعلاج الطبيعي"
 						 fetchpriority="high" />
 
 					<div class="hero-image-badge">
@@ -120,7 +125,7 @@
 
 					<img src="~/images/logo.png"
 						 asp-append-version="true"
-						 alt="شعار مركز بادرة للعلاج الطبيعي" />
+						 alt="شعار مركز بادره للعلاج الطبيعي" />
 
 				</div>
 
@@ -130,23 +135,33 @@
 			<div class="about-content">
 
 				<span class="eyebrow">
-					عن مركز بادرة
+					عن مركز بادره
 				</span>
 
-				<h2>
-					رعاية تبدأ بفهم حالتك
-				</h2>
+				<div class="hero-lede">
+					<strong>رؤيتنا :</strong>
+					<br />
+					أن يحقق مركزنا بصمه واضحه في
+					تخصص العلاج الطبيعي
 
-				<p>
-					في مركز بادرة للعلاج الطبيعي نؤمن بأن رحلة العلاج
-					تبدأ من التقييم الصحيح وفهم احتياجات كل حالة.
-				</p>
 
-				<p>
-					لذلك نحرص على تقديم تجربة علاجية واضحة ومنظمة،
-					تساعد المراجع على فهم خطوات العلاج ومتابعة تطوره
-					خلال الرحلة العلاجية.
-				</p>
+				</div>
+				<div class="hero-lede">
+					<strong>رسالتنا : </strong>
+					<br />
+					السعي بشكل دائم فى تطبيق 
+					الأساليب الحديثة فى الخطط العلاجيه 
+					والمبادرات اللازمة لتحقيق الرؤية
+					المستقبلية للمملكة العربيه السعوديه
+
+				</div>
+				<div class="hero-lede">
+					<strong>قيمنا :</strong>
+					<br />
+					التميز فى مجالنا
+
+
+				</div>
 
 				<a href="#contact"
 				   class="text-link">
@@ -191,91 +206,72 @@
 
 			</div>
 
-
-			<div class="slider-controls"
-				 data-slider-controls="services">
-
-				<button type="button"
-						class="slider-btn"
-						data-slider-prev="services"
-						aria-label="الخدمات السابقة">
-
-					→
-				</button>
-
-				<button type="button"
-						class="slider-btn"
-						data-slider-next="services"
-						aria-label="الخدمات التالية">
-
-					←
-				</button>
-
-			</div>
-
 		</div>
 
 
 		@if (Model.Services.Any())
 		{
-			<div class="content-slider"
-				 data-slider="services">
+			<div class="swiper services-swiper" id="servicesSlider">
 
-				<div class="content-slider-track">
+				<div class="swiper-wrapper">
 
 					@foreach (var service in Model.Services.OrderBy(x => x.DisplayOrder))
 					{
-						<article class="service-card slider-item">
+						<div class="swiper-slide">
 
-							<div class="service-image">
+							<article class="service-card">
 
-								@if (!string.IsNullOrWhiteSpace(service.ImageUrl))
-								{
-									<img src="@service.ImageUrl"
-										 alt="@service.Name"
-										 loading="lazy" />
-								}
-								else
-								{
-									<div class="image-placeholder">
-										<span>✦</span>
-									</div>
-								}
+								<div class="service-image">
 
-							</div>
+									@if (!string.IsNullOrWhiteSpace(service.ImageUrl))
+									{
+										<img src="@service.ImageUrl"
+											 alt="@service.Name"
+											 loading="lazy" />
+									}
+									else
+									{
+										<div class="image-placeholder">
+											<span>✦</span>
+										</div>
+									}
 
-
-							<div class="service-body">
-
-								<div class="service-number">
-									@service.DisplayOrder.ToString("00")
 								</div>
 
-								<h3>
-									@service.Name
-								</h3>
 
-								<p>
-									@service.ShortDescription
-								</p>
+								<div class="service-body">
 
-								<a href="#contact"
-								   class="text-link">
-									استفسر عن الخدمة
-									<span>←</span>
-								</a>
+									<div class="service-number">
+										@service.DisplayOrder.ToString("00")
+									</div>
 
-							</div>
+									<h4>
+										@service.Name
+									</h4>
 
-						</article>
+									<p>
+										@service.ShortDescription
+									</p>
+
+									<a href="#contact"
+									   class="text-link">
+										استفسر عن الخدمة
+										<span>←</span>
+									</a>
+
+								</div>
+
+							</article>
+
+						</div>
 					}
 
 				</div>
 
-			</div>
+				@* <div class="swiper-button-next services-button-next"></div>
+				<div class="swiper-button-prev services-button-prev"></div>*@
+				<div class="swiper-pagination services-pagination"></div> 
 
-			<div class="slider-dots"
-				 data-slider-dots="services">
 			</div>
 		}
 		else
@@ -302,7 +298,7 @@
 		<div class="section-heading center-heading">
 
 			<span class="eyebrow">
-				لماذا مركز بادرة؟
+				لماذا مركز بادره؟
 			</span>
 
 			<h2>
@@ -465,6 +461,7 @@
 	 SPECIALISTS
 ========================================================= -->
 
+
 <section id="specialists"
 		 class="section section-soft">
 
@@ -489,88 +486,102 @@
 
 			</div>
 
-
-			<div class="slider-controls"
-				 data-slider-controls="specialists">
-
-				<button type="button"
-						class="slider-btn"
-						data-slider-prev="specialists"
-						aria-label="الأخصائي السابق">
-
-					→
-				</button>
-
-				<button type="button"
-						class="slider-btn"
-						data-slider-next="specialists"
-						aria-label="الأخصائي التالي">
-
-					←
-				</button>
-
-			</div>
-
 		</div>
 
 
 		@if (Model.Specialists.Any())
 		{
-			<div class="content-slider"
-				 data-slider="specialists">
+			<div class="swiper specialists-swiper" id="specialistsSlider">
 
-				<div class="content-slider-track">
+				<div class="swiper-wrapper">
 
 					@foreach (var specialist in Model.Specialists.OrderBy(x => x.DisplayOrder))
 					{
-						<article class="specialist-card slider-item">
+						<div class="swiper-slide">
 
-							<div class="specialist-image">
+							<article class="specialist-card">
 
-								@if (!string.IsNullOrWhiteSpace(specialist.ImageUrl))
-								{
-									<img src="@specialist.ImageUrl"
-										 alt="@specialist.Name"
-										 loading="lazy" />
-								}
-								else
-								{
-									<div class="image-placeholder">
-										<span>♙</span>
-									</div>
-								}
+								<div class="specialist-image">
+									
+									@if (!string.IsNullOrWhiteSpace(specialist.ImageUrl))
+									{
+										<img src="@specialist.ImageUrl"
+											 alt="@specialist.Name"
+											 loading="lazy" />
+									}
+									else
+									{
+										<div class="image-placeholder">
+											<span>♙</span>
+										</div>
+									}
 
-							</div>
+								</div>
 
 
-							<div class="specialist-body">
+								<div class="specialist-body">
 
-								<h3>
-									@specialist.Name
-								</h3>
+									<h3>
+										@specialist.Name
+									</h3>
 
-								<span class="specialist-specialty">
-									@specialist.Specialty
-								</span>
+									<span class="specialist-specialty">
+										@specialist.Specialty
+									</span>
 
-								@if (!string.IsNullOrWhiteSpace(specialist.Qualifications))
-								{
-									<p class="specialist-qualification">
-										@specialist.Qualifications
-									</p>
-								}
+									@{
+										var bioParts = string.IsNullOrWhiteSpace(specialist.Bio)
+										? new List<string>()
+										: specialist.Bio.Split('*', StringSplitOptions.RemoveEmptyEntries)
+										.Select(p => p.Trim())
+										.Where(p => !string.IsNullOrWhiteSpace(p))
+										.ToList();
 
-							</div>
+										// var bioIntro = bioParts.Count > 0 ? bioParts[0] : null;
+										var bioPoints = bioParts.Count > 0 ? bioParts.ToList() : new List<string>();
+										const int visiblePointsCount = 3;
+									}
 
-						</article>
+									@* @if (bioIntro != null)
+									{
+										<p class="specialist-bio-intro">
+											@bioIntro
+										</p>
+									}
+ *@
+									@if (bioPoints.Any())
+									{
+										<ul class="specialist-bio-list">
+											@for (var i = 0; i < bioPoints.Count; i++)
+											{
+												<li class="@(i >= visiblePointsCount ? "specialist-bio-extra" : "")">
+													@bioPoints[i]
+												</li>
+											}
+										</ul>
+
+										@if (bioPoints.Count > visiblePointsCount)
+										{
+											<button type="button" class="specialist-bio-toggle" data-bio-toggle>
+												<span class="toggle-text">عرض المزيد</span>
+												<span class="toggle-icon">↓</span>
+											</button>
+										}
+									}
+
+								</div>
+
+							</article>
+
+						</div>
 					}
 
 				</div>
 
-			</div>
+			@* 	<div class="swiper-button-next specialists-button-next"></div>
+				<div class="swiper-button-prev specialists-button-prev"></div> *@
+				<div class="swiper-pagination specialists-pagination"></div>
 
-			<div class="slider-dots"
-				 data-slider-dots="specialists">
 			</div>
 		}
 
@@ -601,30 +612,8 @@
 				</h2>
 
 				<p>
-					بعض التجارب التي شاركها مراجعي مركز بادرة.
+					بعض التجارب التي شاركها مراجعي مركز بادره.
 				</p>
-
-			</div>
-
-
-			<div class="slider-controls"
-				 data-slider-controls="reviews">
-
-				<button type="button"
-						class="slider-btn"
-						data-slider-prev="reviews"
-						aria-label="المراجعة السابقة">
-
-					→
-				</button>
-
-				<button type="button"
-						class="slider-btn"
-						data-slider-next="reviews"
-						aria-label="المراجعة التالية">
-
-					←
-				</button>
 
 			</div>
 
@@ -633,126 +622,162 @@
 
 		@if (Model.Reviews.Any())
 		{
-			<div class="content-slider"
-				 data-slider="reviews">
+			<div class="swiper reviews-swiper" id="reviewsSlider">
 
-				<div class="content-slider-track">
+				<div class="swiper-wrapper">
 
 					@foreach (var review in Model.Reviews)
 					{
-						<article class="review-card slider-item">
+						<div class="swiper-slide">
 
-							<div class="review-top">
+							<article class="review-card">
 
-								<div class="review-stars"
-									 aria-label="التقييم @review.Rating من 5">
+								<div class="review-top">
 
-									@for (var i = 1; i <= 5; i++)
+									<div class="review-stars"
+										 aria-label="التقييم @review.Rating من 5">
+
+										@for (var i = 1; i <= 5; i++)
+										{
+											if (i <= review.Rating)
+											{
+												<span>★</span>
+											}
+											else
+											{
+												<span class="empty-star">★</span>
+											}
+										}
+
+									</div>
+
+									<span class="review-source">
+										Google
+									</span>
+
+								</div>
+
+
+								<blockquote>
+									"@review.Content"
+								</blockquote>
+
+
+								<div class="review-footer">
+
+									<div class="reviewer">
+
+										<div class="reviewer-avatar">
+											@review.ReviewerName.Substring(
+											0,
+																		Math.Min(1, review.ReviewerName.Length)
+																		)
+								</div>
+
+								<div>
+
+									<strong>
+										@review.ReviewerName
+									</strong>
+
+									<span>
+										مراجع لدى المركز
+									</span>
+
+								</div>
+
+							</div>
+
+
+							@if (!string.IsNullOrWhiteSpace(review.GoogleReviewUrl))
 									{
-										if (i <= review.Rating)
-										{
-											<span>★</span>
-										}
-										else
-										{
-											<span class="empty-star">★</span>
-										}
+										<a href="@review.GoogleReviewUrl"
+										   target="_blank"
+										   rel="noopener noreferrer"
+										   class="google-review-link">
+
+											مشاهدة المراجعة
+											↗
+
+										</a>
 									}
 
 								</div>
 
-								<span class="review-source">
-									Google
-								</span>
+							</article>
 
+						</div>
+					}
+
+				
+
+				</div>
+			@* 	<!-- جميع آراء Google -->
+				<div class="slider-item reviews-google-card">
+
+					<div class="reviews-google-card">
+
+						<div class="reviews-google-card-content">
+
+							<div class="reviews-google-icon">
+								★
 							</div>
 
+							<h3>
+								جميع آراء مراجعي المركز
+							</h3>
 
-							<blockquote>
-								"@review.Content"
-							</blockquote>
+							<p>
+								شاهد المزيد من تجارب وآراء مراجعي
+								مركز بادره للعلاج الطبيعي على Google Maps.
+							</p>
 
+							<a href="https://2u.pw/GA10Tz"
+							   class="btn btn-primary"
+							   target="_blank"
+							   rel="noopener noreferrer">
 
-							<div class="review-footer">
-
-								<div class="reviewer">
-
-									<div class="reviewer-avatar">
-										@review.ReviewerName.Substring(
-										0,
-																Math.Min(1, review.ReviewerName.Length)
-																)
-							</div>
-
-							<div>
-
-								<strong>
-									@review.ReviewerName
-								</strong>
-
-								<span>
-									مراجع لدى المركز
-								</span>
-
-							</div>
+								مشاهدة جميع الآراء
+							</a>
 
 						</div>
 
-
-						@if (!string.IsNullOrWhiteSpace(review.GoogleReviewUrl))
-								{
-									<a href="@review.GoogleReviewUrl"
-									   target="_blank"
-									   rel="noopener noreferrer"
-									   class="google-review-link">
-
-										مشاهدة المراجعة
-										↗
-
-									</a>
-								}
-
-							</div>
-
-						</article>
-					}
+					</div> *@
 
 				</div>
-				
-			</div>
-			<!-- جميع آراء Google -->
-			<div class="slider-item reviews-google-card">
+			@* 	<div class="swiper-button-next reviews-button-next"></div>
+				<div class="swiper-button-prev reviews-button-prev"></div> *@
+				<div class="swiper-pagination reviews-pagination"></div>
+				 
 
-				<div class="reviews-google-card-content">
+			<div class="reviews-google-static">
 
-					<div class="reviews-google-icon">
-						★
+				<div class="reviews-google-card">
+
+					<div class="reviews-google-card-content">
+
+						<div class="reviews-google-icon">★</div>
+
+						<h3>جميع آراء مراجعي المركز</h3>
+
+						<p>
+							شاهد المزيد من تجارب وآراء مراجعي
+							مركز بادره للعلاج الطبيعي على Google Maps.
+						</p>
+
+						<a href="https://2u.pw/GA10Tz"
+						   class="btn btn-primary"
+						   target="_blank"
+						   rel="noopener noreferrer">
+							مشاهدة جميع الآراء
+						</a>
+
 					</div>
 
-					<h3>
-						جميع آراء مراجعي المركز
-					</h3>
-
-					<p>
-						شاهد المزيد من تجارب وآراء مراجعي
-						مركز بادرة للعلاج الطبيعي على Google Maps.
-					</p>
-
-					<a href="https://2u.pw/GA10Tz"
-					   class="btn btn-primary"
-					   target="_blank"
-					   rel="noopener noreferrer">
-
-						مشاهدة جميع الآراء
-					</a>
-
 				</div>
 
 			</div>
 
-			<div class="slider-dots"
-				 data-slider-dots="reviews">
-			</div>
 		}
 
 	</div>
@@ -845,8 +870,8 @@
 								البريد الإلكتروني
 							</strong>
 
-							<a href="mailto:info@badra-center.com">
-								info@badra-center.com
+							<a href="mailto:Badrah21@outlook.sa">
+								Badrah21@outlook.sa
 							</a>
 
 						</div>
@@ -862,7 +887,7 @@
 
 						<tr>
 							<td>السبت - الخميس</td>
-							<td>9:00 ص - 9:00 م</td>
+							<td>1:00 م - 9:00 م</td>
 						</tr>
 
 						<tr>
@@ -901,10 +926,10 @@
 
 			<div class="map-frame">
 
-				<iframe src="https://www.google.com/maps?q=مركز+بادرة+للعلاج+الطبيعي+بريدة&output=embed"
+				<iframe src="https://www.google.com/maps?q=مركز+بادره+للعلاج+الطبيعي+بريدة&output=embed"
 						loading="lazy"
 						referrerpolicy="no-referrer-when-downgrade"
-						title="موقع مركز بادرة للعلاج الطبيعي على الخريطة">
+						title="موقع مركز بادره للعلاج الطبيعي على الخريطة">
 				</iframe>
 
 			</div>
